@@ -2,6 +2,8 @@
 // EXAMPLES
 /**********/
 
+import { number } from "jsverify";
+
 // numbers: [number]
 const numbers = [1, 2, 3];
 
@@ -29,24 +31,24 @@ const calculateTotalImperative = (items, tax) => {
 /**********/
 
 // prices: (items: [{price: number}]) -> [number]
-const prices = undefined; // TODO - Implementation
+const prices = items => items.map(item => item.price);
 
 // sum: (numbers: [number]) -> number
-const sum = undefined; // TODO - Implementation
+const sum = numbers => numbers.reduce((number1, number2) => number1 + number2, 0);
 
 // selectTaxable: (items: [{taxable: boolean}]) -> [{taxable: boolean}]
-const selectTaxable = undefined; // TODO - Implementation
+const selectTaxable = items => items.filter(item => item.taxable);
 
 // applyTax: (prices: [number], tax: number) -> [number]
-const applyTax = undefined; // TODO - Implementation
+const applyTax = (prices, tax) => prices.map(number => number * tax);
 
-// baseSum: TODO - Type Signature
+// baseSum: (items: [{price: number}]) -> number
 const baseSum = items => sum(prices(items));
 
-// taxSum: TODO - Type Signature
+// taxSum: (items : [{price: number}, {taxable: boolean}], tax: number) -> {tax: number}
 const taxSum = (items, tax) => sum(applyTax(prices(selectTaxable(items)), tax));
 
-// calculateTotalDeclarative: TODO - Type Signature
+// calculateTotalDeclarative: (items : [{price: number}], tax: number) -> {baseSum: number + taxSum: number}
 const calculateTotalDeclarative = (items, tax) =>
   baseSum(items) + taxSum(items, Math.abs(tax));
 
